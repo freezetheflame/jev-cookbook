@@ -18,6 +18,14 @@ Jev Cookbook collects practical recipes for typed decisions with TypeSafe Jev: r
 
 ## 快速使用
 
+想从一段决策描述开始？试用 [请求转换器 demo](demo/README.md)：输入问题与材料，生成二元判断、单选分类、有序评分或组合请求。浏览器本地运行，支持可修改的拆分草稿、选项和等级，以及 JSON 复制 / 下载。
+
+```sh
+python -m http.server 8075 --bind 127.0.0.1 --directory demo
+```
+
+然后打开 `http://127.0.0.1:8075`。转换器使用规则模板，生成的是请求草稿，不调用 Jev、不返回模型答案。
+
 需要 Python 3.10+；脚本只使用标准库。下面两条命令离线运行，不会调用 API：
 
 ```sh

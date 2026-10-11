@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Jev Cookbook · 请求转换器</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><a class="brand" href="https://github.com/freezetheflame/jev-cookbook">JEV <span>COOKBOOK</span></a><span class="local">● 浏览器本地生成</span></header>
+  <main>
+    <div class="intro"><div><p class="eyebrow">DECISION → REQUEST / DEMO 01</p><h1>把一个决策，写成 Jev 请求。</h1><p class="subtitle">材料写入 state，判断写入 questions，边界写入 criteria。<br>用几种明确的转换模式，看看同一个问题可以怎样表达。</p></div><span class="stamp">规则模板<br><b>可检查 · 可修改</b></span></div>
+    <div class="presets"><span>试一个例子</span><button data-preset="refund">退款判断</button><button data-preset="category">工单分类</button><button data-preset="severity">严重程度</button><button data-preset="compound">三个独立决策 ↗</button></div>
+    <div class="workspace">
+      <section class="card input-card">
+        <div class="section-title"><span class="number">01</span><h2>描述决策</h2><span class="small">输入</span></div>
+        <label for="decision">你想判断什么？</label><textarea id="decision" rows="3" placeholder="例如：判断这条客户消息是否提出了退款申请。"></textarea>
+        <div class="label-row"><label for="material">待判断的材料</label><select id="format" aria-label="材料格式"><option value="text">文本</option><option value="json">JSON 对象 / 数组</option></select></div>
+        <textarea id="material" rows="5" spellcheck="false"></textarea>
+        <label>转换模式</label>
+        <div class="modes" role="group" aria-label="转换模式">
+          <button data-mode="auto" aria-pressed="true">自动建议</button><button data-mode="noul" aria-pressed="false">二元 Noul</button><button data-mode="choice" aria-pressed="false">单选 Choice</button><button data-mode="score" aria-pressed="false">评分 Score</button><button data-mode="compound" aria-pressed="false">组合拆分</button>
+        </div>
+        <p id="mode-help" class="hint">通过“是否 / 类别 / 评分”等词建议类型；含义不明确时会请你补充。</p>
+        <div id="binary-settings" class="settings"><label for="positive">true 的定义 <span>选填；自定义时两项都要填</span></label><textarea id="positive" rows="2" placeholder="材料明确提出退款申请。"></textarea><label for="negative">false 的定义</label><textarea id="negative" rows="2" placeholder="没有提出申请，或证据不足。"></textarea></div>
+        <div id="choice-settings" class="settings" hidden><label for="options">分类候选项 <span>每行：名称 | 边界描述</span></label><textarea id="options" rows="5" placeholder="退款 | 客户提出退还已支付款项的申请&#10;咨询 | 客户询问信息，没有提出退款申请&#10;其他 | 不属于以上类别"></textarea></div>
+        <div id="score-settings" class="settings" hidden><label for="levels">评分等级 <span>每行一个，按低到高；2–10 级</span></label><textarea id="levels" rows="5" placeholder="无影响：功能正常，仅询问信息&#10;轻微：局部异常，有可用替代路径&#10;严重：核心功能不可用，没有替代路径&#10;紧急：核心功能不可用，并造成持续的资金损失"></textarea></div>
+        <div id="atoms-panel" class="settings" hidden><div class="label-row"><label>独立决策 <span>拆分草稿，可修改</span></label><button id="add-atom" class="text-button">＋ 添加</button></div><div id="atoms"></div><p class="hint">组合模式的分类和评分使用上方标准。多个同类型任务需要不同标准时，分别生成请求。</p></div>
+        <button id="generate" class="primary">生成请求草稿 <span>→</span></button>
+        <p id="error" role="alert" hidden></p>
+      </section>
+      <section class="card output-card">
+        <div class="section-title"><span class="number">02</span><h2>检查请求</h2><span id="status" class="small">等待输入</span></div>
+        <div class="output-tabs" role="group" aria-label="输出视图"><button data-tab="request" aria-pressed="true">请求 JSON</button><button data-tab="guide" aria-pressed="false">转换依据</button></div>
+        <div id="request-view"><div class="code-toolbar"><span>POST /v1/systemone</span><div><button id="copy" disabled>复制</button><button id="download" disabled>下载 JSON</button></div></div><pre id="output" tabindex="0">填入决策与材料，再生成请求。</pre></div>
+        <div id="guide-view" hidden><ol id="steps"></ol><div id="question-summary"></div><p class="hint">对应规则：<a href="https://github.com/freezetheflame/jev-cookbook/blob/main/patterns/state-design.md">State 设计</a> · <a href="https://github.com/freezetheflame/jev-cookbook/blob/main/patterns/criteria-design.md">Criteria 设计</a> · <a href="https://github.com/freezetheflame/jev-cookbook/blob/main/patterns/atomic-decisions.md">原子决策</a></p></div>
+        <div id="review" class="review" hidden><h3>使用前检查</h3><ul id="warnings"></ul></div>
+        <p class="footer-note">本页不发送材料，不调用 Jev，也不产生模型答案。生成结果是可编辑的设计草稿；离线结构检查不能证明判断效果。</p>
+      </section>
+    </div>
+    <footer>Jev Cookbook / 独立社区项目<span>型号固定 jev-1.13.0 · 合成演示材料</span></footer>
+  </main>
+  <script src="converter.js"></script><script src="app.js"></script>
+</body>
+</html>

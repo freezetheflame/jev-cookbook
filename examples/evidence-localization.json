@@ -1,0 +1,31 @@
+{
+  "model": "jev-1.13.0",
+  "state": {
+    "query": "What is the allowed refund period?",
+    "page_text": "Refund policy\nRefunds may be requested within 21 days of delivery.\nContact the help desk for shipping questions."
+  },
+  "questions": {
+    "hit_span_1": {
+      "type": "noul",
+      "instructions": {
+        "task": "Does `target_line` itself answer `query`? Use `page_text` only to interpret surrounding context.",
+        "target_line": "Refunds may be requested within 21 days of delivery."
+      },
+      "criteria": {
+        "true": "The target line gives the requested refund period or a condition essential to it.",
+        "false": "The target line only mentions a related topic, title, or neighboring information."
+      }
+    },
+    "hit_span_2": {
+      "type": "noul",
+      "instructions": {
+        "task": "Does `target_line` itself answer `query`? Use `page_text` only to interpret surrounding context.",
+        "target_line": "Contact the help desk for shipping questions."
+      },
+      "criteria": {
+        "true": "The target line gives the requested refund period or a condition essential to it.",
+        "false": "The target line only mentions a related topic, title, or neighboring information."
+      }
+    }
+  }
+}

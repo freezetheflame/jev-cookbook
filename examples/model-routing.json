@@ -1,0 +1,28 @@
+{
+  "model": "jev-1.13.0",
+  "state": {
+    "task": "Investigate why retries sometimes create duplicate records across two services.",
+    "phase": "investigation",
+    "recent_result": "The unit tests pass; the intermittent integration failure has not been explained."
+  },
+  "questions": {
+    "capability": {
+      "type": "choice",
+      "instructions": "Which capability is sufficient for the remaining work in `task`, considering `phase` and `recent_result`?",
+      "criteria": {
+        "mechanical": "A known low-risk transformation with exact targets and no investigation.",
+        "bounded": "A clear local implementation using known requirements and patterns.",
+        "investigative": "Resolve ambiguous behavior, cross-service interactions, or an unexplained intermittent failure."
+      }
+    },
+    "effort": {
+      "type": "choice",
+      "instructions": "What reasoning depth is sufficient for the remaining work in `task`, considering `recent_result`? Evaluate depth independently of the capability question.",
+      "criteria": {
+        "low": "No unresolved interpretation; perform a known mechanical step.",
+        "medium": "Several bounded considerations with a clear approach.",
+        "high": "Investigate unresolved failure mechanisms and compare competing explanations."
+      }
+    }
+  }
+}

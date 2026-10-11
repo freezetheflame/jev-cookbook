@@ -1,0 +1,21 @@
+{
+  "model": "jev-1.13.0",
+  "state": {
+    "hunks": {
+      "h0": {
+        "file": "checkout/handler.py",
+        "diff": " def checkout(customer):\n+    logger.info('Customer address: %s', customer.email)\n     return create_order(customer)"
+      }
+    }
+  },
+  "questions": {
+    "h0_exposes_email": {
+      "type": "noul",
+      "instructions": "Does the change in `hunks.h0.diff` add logging of a customer's email address? Lines with + are added, - are removed, and other lines are unchanged. Check the new change itself.",
+      "criteria": {
+        "true": "Added code sends an actual customer email address to the logger.",
+        "false": "Added code logs no customer email value; merely mentioning the word email is insufficient."
+      }
+    }
+  }
+}

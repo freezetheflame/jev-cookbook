@@ -1,0 +1,3 @@
+{"uid":"demo-001","split":"dev","state":{"text":"I submitted a refund request yesterday. Has it been approved?"},"gold":{"label":"refund_status"}}
+{"uid":"demo-002","split":"dev","state":{"text":"Can I get a refund after opening the package?"},"gold":{"label":"refund_eligibility"}}
+{"uid":"demo-003","split":"held_out","state":{"text":"Could you help me with this?"},"gold":{"label":"insufficient_evidence"}}
